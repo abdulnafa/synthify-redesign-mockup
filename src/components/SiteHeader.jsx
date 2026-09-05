@@ -22,6 +22,8 @@ const FOCUSABLE_SELECTOR = [
   '[tabindex]:not([tabindex="-1"])',
 ].join(',')
 
+const HEADER_SCROLL_THRESHOLD = 24
+
 function lockPageScroll() {
   const body = document.body
   const count = Number(body.dataset.scrollLockCount || 0) + 1
@@ -77,8 +79,10 @@ function SiteHeader() {
   const headerCta = siteData.headerCta || {}
   const location = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const menuButtonRef = useRef(null)
   const drawerRef = useRef(null)
+  const scrollFrameRef = useRef(null)
   const previousPathRef = useRef(location.pathname)
 
   const closeMenu = () => setMenuOpen(false)
@@ -89,6 +93,29 @@ function SiteHeader() {
       setMenuOpen(false)
     }
   }, [location.pathname])
+
+  useEffect(() => {
+    const updateScrolledState = () => {
+      scrollFrameRef.current = null
+      setIsScrolled(window.scrollY > HEADER_SCROLL_THRESHOLD)
+    }
+
+    const handleScroll = () => {
+      if (scrollFrameRef.current !== null) return
+      scrollFrameRef.current = window.requestAnimationFrame(updateScrolledState)
+    }
+
+    updateScrolledState()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+
+      if (scrollFrameRef.current !== null) {
+        window.cancelAnimationFrame(scrollFrameRef.current)
+      }
+    }
+  }, [])
 
   useEffect(() => {
     if (!menuOpen) return undefined
@@ -144,13 +171,28 @@ function SiteHeader() {
     }
   }, [menuOpen])
 
-  const logo = brand.logo || './assets/brand/synthify-logo-dark.png'
   const ctaLabel = headerCta.label || 'Book a consultation'
   const ctaTo = headerCta.to || headerCta.path || '/contact'
+  const isHome = location.pathname === '/'
+  const logo = isHome
+    ? brand.logoDark || './assets/brand/synthify-logo.png'
+    : brand.logo || './assets/brand/synthify-logo-dark.png'
+  const headerClasses = [
+    'site-header',
+    isHome ? 'site-header--home' : 'site-header--interior',
+    isScrolled ? 'site-header--scrolled' : 'site-header--at-top',
+    menuOpen ? 'site-header--menu-open' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <>
-      <header className="site-header">
+      <header
+        className={headerClasses}
+        data-home={isHome ? 'true' : 'false'}
+        data-scrolled={isScrolled ? 'true' : 'false'}
+      >
         <div className="site-header__inner container">
         <Link className="site-header__brand" to="/" aria-label="Synthify home">
           <img className="site-header__logo" src={logo} alt="Synthify" />

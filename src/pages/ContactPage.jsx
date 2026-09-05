@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { CheckCircle2, Clock, Mail, MapPin, Phone } from 'lucide-react'
 import Accordion from '../components/Accordion.jsx'
+import Reveal from '../components/motion/Reveal.jsx'
 import { contactInfo, faqs } from '../data/siteData.js'
 
 export default function ContactPage() {
@@ -10,7 +11,7 @@ export default function ContactPage() {
     <>
       <section className="contact-hero">
         <div className="container contact-hero__grid">
-          <div className="contact-hero__copy"><h1>Let’s build what your team needs next.</h1><p>Tell us where you are today. A Synthify consultant will help you define the next practical step.</p><ul><li><MapPin aria-hidden="true" />{contactInfo.location}</li><li><Phone aria-hidden="true" /><a href={contactInfo.phoneHref}>{contactInfo.phone}</a></li><li><Mail aria-hidden="true" /><a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a></li><li><Clock aria-hidden="true" />{contactInfo.hours}</li></ul></div>
+          <Reveal as="div" className="contact-hero__copy" amount={0.3}><h1>Let’s build what your team needs next.</h1><p>Tell us where you are today. A Synthify consultant will help you define the next practical step.</p><ul><li><MapPin aria-hidden="true" />{contactInfo.location}</li><li><Phone aria-hidden="true" /><a href={contactInfo.phoneHref}>{contactInfo.phone}</a></li><li><Mail aria-hidden="true" /><a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a></li><li><Clock aria-hidden="true" />{contactInfo.hours}</li></ul></Reveal>
           {sent ? <div className="contact-form-card success-panel" role="status"><CheckCircle2 aria-hidden="true" /><h2>Thanks — your enquiry is ready.</h2><p>This is a client-facing prototype, so it has not sent data. The final WordPress version will connect to the approved mailbox and CRM workflow.</p><button className="button button--secondary" type="button" onClick={() => setSent(false)}>Send another enquiry</button></div> : (
             <form className="contact-form-card" onSubmit={(event) => { event.preventDefault(); setSent(true) }}>
               <fieldset><legend>I’m looking for</legend><div className="choice-grid">{['Recruitment support', 'Career opportunities'].map((choice) => <label key={choice} className={audience === choice ? 'choice-field is-selected' : 'choice-field'}><input type="radio" name="audience" value={choice} checked={audience === choice} onChange={(event) => setAudience(event.target.value)} /><span>{choice}</span></label>)}</div></fieldset>
@@ -22,7 +23,7 @@ export default function ContactPage() {
           )}
         </div>
       </section>
-      <section className="section section--white"><div className="container faq-preview"><div><h2>A few useful answers.</h2><p>Quick context before we speak.</p></div><Accordion items={faqs.slice(0, 3)} /></div></section>
+      <section className="section section--white"><Reveal as="div" className="container faq-preview"><div><h2>A few useful answers.</h2><p>Quick context before we speak.</p></div><Accordion items={faqs.slice(0, 3)} /></Reveal></section>
     </>
   )
 }
