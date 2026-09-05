@@ -2,6 +2,9 @@
 
 A production-style React/Vite redesign for Synthify HR Solutions, created as a client-review prototype before WordPress implementation.
 
+- Live demo: https://abdulnafa.github.io/synthify-redesign-mockup/
+- Repository: https://github.com/abdulnafa/synthify-redesign-mockup
+
 ## Run locally
 
 ```bash
