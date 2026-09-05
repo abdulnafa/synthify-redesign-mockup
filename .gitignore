@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.vite/
+*.log
+.DS_Store
+.content-source/
+.site-sitemaps/
+.site-*.xml
+.site-*.txt
+.site-audit-home.html
+.original-home-desktop.png
+.chrome-audit-*/
+.qa-*/
+playwright-report/
+test-results/
