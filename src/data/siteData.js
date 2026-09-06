@@ -6,7 +6,7 @@ export const brand = {
 }
 
 export const headerCta = {
-  label: 'Hire Talent / Book A Consultation',
+  label: 'Book a consultation',
   to: '/contact',
 }
 
