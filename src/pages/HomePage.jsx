@@ -1,9 +1,8 @@
 import { useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion as Motion, useReducedMotion, useScroll } from 'motion/react'
-import { ArrowDown, ArrowRight, Mail, MapPin, Phone } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import {
-  contactInfo,
   insights,
   sectors,
   serviceDetails,
@@ -120,8 +119,8 @@ function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.58, ease: easeOut }}
             >
-              Synthify helps organisations build capable teams and helps ambitious professionals find
-              work worth doing.
+              Synthify helps organizations across the GCC find exceptional talent, build
+              high-performing teams and appoint the leaders who move their business forward.
             </Motion.p>
 
             <Motion.div
@@ -130,36 +129,11 @@ function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, delay: 0.68, ease: easeOut }}
             >
-              <ButtonLink to="/contact">Build your team</ButtonLink>
+              <ButtonLink to="/contact">Hire Talent</ButtonLink>
               <ButtonLink to="/jobs" variant="outline-light">Find your next role</ButtonLink>
             </Motion.div>
           </div>
 
-          <Motion.div
-            className="premium-hero__utility"
-            initial={reducedMotion ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.65, delay: 0.88 }}
-          >
-            <a className="premium-hero__scroll" href="#services">
-              <span>Scroll to explore</span>
-              <ArrowDown aria-hidden="true" />
-            </a>
-            <address className="premium-hero__contact">
-              <a href={contactInfo.mapUrl} target="_blank" rel="noreferrer">
-                <MapPin aria-hidden="true" />
-                {contactInfo.location}
-              </a>
-              <a href={`mailto:${contactInfo.email}`}>
-                <Mail aria-hidden="true" />
-                {contactInfo.email}
-              </a>
-              <a href={contactInfo.phoneHref}>
-                <Phone aria-hidden="true" />
-                {contactInfo.phone}
-              </a>
-            </address>
-          </Motion.div>
         </div>
       </section>
 

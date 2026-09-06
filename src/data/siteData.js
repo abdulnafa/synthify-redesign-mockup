@@ -6,7 +6,7 @@ export const brand = {
 }
 
 export const headerCta = {
-  label: 'Book a consultation',
+  label: 'Hire Talent / Book A Consultation',
   to: '/contact',
 }
 
@@ -51,9 +51,10 @@ export const navigation = [
       },
     ],
   },
-  { label: 'Sectors', to: '/sectors' },
+  { label: 'Industries', to: '/sectors' },
   { label: 'Jobs', to: '/jobs' },
   { label: 'Insights', to: '/insights' },
+  { label: 'Contact', to: '/contact' },
 ]
 
 export const services = [

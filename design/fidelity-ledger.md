@@ -23,16 +23,16 @@ Reviewed in the final QA pass against:
 | Element | Accepted concept | Implementation |
 | --- | --- | --- |
 | Headline | The right people move business forward. | Exact match |
-| Supporting copy | Synthify helps organisations build capable teams and helps ambitious professionals find work worth doing. | Exact match |
-| Primary CTA | Build your team | Exact match |
+| Supporting copy | Synthify helps organisations build capable teams and helps ambitious professionals find work worth doing. | Replaced with the client-approved GCC talent and leadership line |
+| Primary CTA | Build your team | Replaced with the client-approved `Hire Talent` label |
 | Secondary CTA | Find your next role | Exact match |
-| Navigation | About, Services, Sectors, Jobs, Insights | Exact match |
+| Navigation | About, Services, Sectors, Jobs, Insights | Client revision: About, Services, Industries, Jobs, Insights, Contact |
 
 No statistics, testimonials, client logos, awards or geographic claims were introduced.
 
 ## Motion and responsive QA
 
-- Desktop: 1440px viewport, no horizontal overflow, service state transition verified.
-- Mobile: 390px viewport, no horizontal overflow, menu opens correctly, 56px primary touch target.
+- Desktop: 1366×768 viewport, hero height and bottom exactly match the viewport, no horizontal overflow, and `Hire Talent` routes to Contact.
+- Mobile: 390×844 viewport, hero height and bottom exactly match the viewport, no horizontal overflow, and all six mobile navigation items render.
 - Reduced motion: looping ticker disabled, scroll progress hidden and smooth scrolling disabled.
 - Runtime: no console errors or Vite error overlay during the final browser pass.
